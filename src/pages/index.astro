@@ -1,11 +1,1155 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const featuredProjects = [
+	{
+		label: 'flagship build',
+		title: 'Atlas Commerce OS',
+		file: 'atlas-commerce.ts',
+		status: 'stable',
+		summary:
+			'A modular storefront, content studio, and fulfillment dashboard designed to keep product, support, and operations on the same live system.',
+		impact:
+			'Unified fragmented workflows into one surface with shared data contracts, faster releases, and fewer operational handoffs.',
+		stack: ['Astro', 'TypeScript', 'Node.js', 'PostgreSQL'],
+		tone: 'cyan',
+		span: 'wide',
+	},
+	{
+		label: 'product analytics',
+		title: 'Pulseboard',
+		file: 'pulseboard.tsx',
+		status: 'live',
+		summary:
+			'A real-time command center for growth teams, pairing event streams with annotated experiments and launch health tracking.',
+		impact:
+			'Made release decisions visible in one place instead of scattered across dashboards, sheets, and chat threads.',
+		stack: ['React', 'Supabase', 'D3', 'Edge Functions'],
+		tone: 'green',
+		span: 'tall',
+	},
+	{
+		label: 'ai workflow',
+		title: 'PromptForge',
+		file: 'promptforge.py',
+		status: 'iterating',
+		summary:
+			'An internal toolkit for evaluation loops, prompt versioning, and retrieval-backed prototyping across support and operations use cases.',
+		impact:
+			'Reduced prototyping time by turning repeatable LLM workflows into reusable product building blocks.',
+		stack: ['Python', 'OpenAI', 'Vector Search', 'CI/CD'],
+		tone: 'amber',
+		span: 'standard',
+	},
+];
+
+const principles = [
+	{
+		command: 'npm run think-product-first',
+		title: 'Product sense over feature cargo cults',
+		copy: 'I start with the user journey, identify the sharp edges, and only then choose the technical shape that earns its complexity.',
+	},
+	{
+		command: 'pnpm align-interface-and-system',
+		title: 'Interfaces and systems move together',
+		copy: 'Frontend decisions, API contracts, data modeling, and observability need to line up early if the product is supposed to scale cleanly.',
+	},
+	{
+		command: 'deploy --with-feedback-loop',
+		title: 'Shipping includes instrumentation',
+		copy: 'Tracing, error visibility, and release hygiene are part of the build itself, not cleanup work after the launch.',
+	},
+];
+
+const toolGroups = [
+	{
+		name: 'frontend',
+		items: ['Astro', 'React', 'TypeScript', 'Design Systems'],
+	},
+	{
+		name: 'backend',
+		items: ['Node.js', 'Python', 'PostgreSQL', 'API Design'],
+	},
+	{
+		name: 'platform',
+		items: ['Docker', 'GitHub Actions', 'Azure', 'Monitoring'],
+	},
+	{
+		name: 'ai',
+		items: ['OpenAI APIs', 'Evaluation Loops', 'Retrieval', 'Automation'],
+	},
+];
+
+const fieldNotes = [
+	{
+		label: 'primary focus',
+		value: 'Product engineering, developer tooling, and AI-assisted workflows',
+	},
+	{
+		label: 'preferred work',
+		value: 'Web apps, internal platforms, and systems with clear product pressure',
+	},
+	{
+		label: 'working style',
+		value: 'Fast iteration, honest constraints, and production-minded execution',
+	},
+];
+
+const commandStrip = [
+	'ship ui --with-clarity',
+	'connect api --without-friction',
+	'observe production --continuously',
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	title="Software Developer Portfolio"
+	description="A code-inspired single-page software developer portfolio built with Astro."
+>
+	<div class="portfolio">
+		<header class="topbar">
+			<a class="brand" href="#top">
+				<span class="brand-glyph">&lt;/&gt;</span>
+				<span class="brand-copy">
+					<span class="prompt-line">dev@portfolio:~$</span>
+					<span>open profile</span>
+				</span>
+			</a>
+
+			<nav class="site-nav" aria-label="Primary">
+				<a href="#work">work</a>
+				<a href="#about">about</a>
+				<a href="#contact">contact</a>
+			</nav>
+		</header>
+
+		<main id="top" class="page-shell">
+			<section class="shell-card hero-shell">
+				<div class="shell-head">
+					<div class="shell-dots" aria-hidden="true">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+					<span>~/workspace/portfolio.tsx</span>
+				</div>
+
+				<div class="hero-grid">
+					<div class="hero-copy reveal">
+						<p class="section-kicker">// software developer portfolio</p>
+						<h1>Readable code. Reliable systems. Interfaces with intent.</h1>
+						<p class="lede">
+							I build web products that feel intentional in the browser and predictable in
+							production. The work spans interface design, backend delivery, tooling, and the
+							operational details that make shipping sustainable.
+						</p>
+
+						<div class="hero-actions">
+							<a class="button button-primary" href="#work">inspect selected work</a>
+							<a class="button button-secondary" href="#contact">open contact channel</a>
+						</div>
+
+						<ul class="command-strip" aria-label="Developer commands">
+							{
+								commandStrip.map((command) => (
+									<li>
+										<span class="prompt">$</span>
+										<span>{command}</span>
+									</li>
+								))
+							}
+						</ul>
+					</div>
+
+					<aside class="editor-window reveal delay-1">
+						<div class="editor-tabs" aria-label="Open files">
+							<span class="tab active">profile.ts</span>
+							<span class="tab">stack.json</span>
+							<span class="tab">contact.sh</span>
+						</div>
+
+						<pre class="code-block"><code><span><span class="token-comment">// active developer profile</span></span><span><span class="token-keyword">const</span> <span class="token-variable">developer</span> = {'{'}</span><span>  role: <span class="token-string">'software developer'</span>,</span><span>  focus: [<span class="token-string">'frontend systems'</span>, <span class="token-string">'backend delivery'</span>, <span class="token-string">'ai tooling'</span>],</span><span>  status: <span class="token-string">'shipping'</span>,</span><span>  defaultMode: <span class="token-string">'clarity over noise'</span>,</span><span>  productionMindset: <span class="token-boolean">true</span></span><span>{'}'};</span></code></pre>
+
+						<div class="window-footer">
+							<span>git status: clean</span>
+							<span>tests: passing</span>
+							<span>deploy: monitored</span>
+						</div>
+					</aside>
+				</div>
+
+				<div class="runtime-grid reveal delay-2">
+					{
+						fieldNotes.map((note) => (
+							<article class="runtime-card">
+								<p>{note.label}</p>
+								<h2>{note.value}</h2>
+							</article>
+						))
+					}
+				</div>
+			</section>
+
+			<section id="work" class="shell-card section-shell reveal">
+				<div class="shell-head">
+					<div class="shell-dots" aria-hidden="true">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+					<span>~/workspace/projects/</span>
+				</div>
+
+				<div class="section-body">
+					<div class="section-heading">
+						<p class="section-kicker">// selected work</p>
+						<h2>Projects that balance product speed with maintainable architecture.</h2>
+					</div>
+
+					<div class="project-grid">
+						{
+							featuredProjects.map((project, index) => (
+								<article class={`project-card ${project.tone} ${project.span}`}>
+									<div class="project-head">
+										<span class="file-name">{project.file}</span>
+										<span class="status-pill">{project.status}</span>
+									</div>
+
+									<div class="project-body">
+										<p class="project-index">0{index + 1}</p>
+										<p class="project-label">{project.label}</p>
+										<h3>{project.title}</h3>
+										<p class="project-summary">{project.summary}</p>
+										<div class="project-log">
+											<span class="log-key">impact:</span>
+											<span>{project.impact}</span>
+										</div>
+										<ul class="tag-list" aria-label={`${project.title} tech stack`}>
+											{project.stack.map((item) => <li>{item}</li>)}
+										</ul>
+									</div>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section id="about" class="about-grid">
+				<div class="shell-card section-shell reveal delay-1">
+					<div class="shell-head">
+						<div class="shell-dots" aria-hidden="true">
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+						<span>~/workspace/principles.md</span>
+					</div>
+
+					<div class="section-body">
+						<div class="section-heading compact">
+							<p class="section-kicker">// build philosophy</p>
+							<h2>How I work when the product is real and the constraints are not optional.</h2>
+						</div>
+
+						<div class="principle-list">
+							{
+								principles.map((principle) => (
+									<article class="principle-card">
+										<p class="terminal-command">
+											<span class="prompt">$</span>
+											<span>{principle.command}</span>
+										</p>
+										<h3>{principle.title}</h3>
+										<p>{principle.copy}</p>
+									</article>
+								))
+							}
+						</div>
+					</div>
+				</div>
+
+				<aside class="shell-card section-shell side-panel reveal delay-2">
+					<div class="shell-head">
+						<div class="shell-dots" aria-hidden="true">
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+						<span>~/workspace/toolchain.json</span>
+					</div>
+
+					<div class="section-body">
+						<div class="section-heading compact">
+							<p class="section-kicker">// toolbox</p>
+							<h2>Tools chosen for products that need both speed and operational discipline.</h2>
+						</div>
+
+						<div class="tool-groups">
+							{
+								toolGroups.map((group) => (
+									<section class="tool-group">
+										<div class="group-label">"{group.name}": [</div>
+										<ul class="tool-list">
+											{group.items.map((item) => <li>{item}</li>)}
+										</ul>
+										<div class="group-label closing">]</div>
+									</section>
+								))
+							}
+						</div>
+					</div>
+				</aside>
+			</section>
+
+			<section id="contact" class="shell-card section-shell contact-shell reveal delay-2">
+				<div class="shell-head">
+					<div class="shell-dots" aria-hidden="true">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+					<span>~/workspace/contact.sh</span>
+				</div>
+
+				<div class="section-body contact-grid">
+					<div class="contact-copy">
+						<p class="section-kicker">// contact</p>
+						<h2>Need a developer who can move between interface, API, and release flow?</h2>
+						<p>
+							I work best on products that need technical taste, clear execution, and someone
+							who can keep the browser experience and the underlying system equally sharp.
+						</p>
+					</div>
+
+					<div class="contact-console">
+						<p>
+							<span class="prompt">dev@portfolio:~$</span>
+							<span>ping --channel email</span>
+						</p>
+						<a class="button button-primary" href="mailto:hello@yourname.dev">hello@yourname.dev</a>
+						<p>
+							<span class="prompt">dev@portfolio:~$</span>
+							<span>browse --profile github</span>
+						</p>
+						<a class="contact-link" href="https://github.com/yourname">github.com/yourname</a>
+						<p>
+							<span class="prompt">dev@portfolio:~$</span>
+							<span>browse --profile linkedin</span>
+						</p>
+						<a class="contact-link" href="https://www.linkedin.com/in/yourname/">
+							linkedin.com/in/yourname
+						</a>
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
 </Layout>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+	:root {
+		--page: #07111b;
+		--page-deep: #040b12;
+		--panel: rgba(10, 19, 31, 0.82);
+		--panel-2: rgba(8, 15, 24, 0.92);
+		--line: rgba(112, 170, 255, 0.16);
+		--line-strong: rgba(112, 170, 255, 0.32);
+		--text: #edf3ff;
+		--muted: #8ca1bd;
+		--cyan: #67e8f9;
+		--green: #7af0b3;
+		--amber: #ffb86a;
+		--blue: #78a6ff;
+		--shadow: 0 32px 80px rgba(0, 0, 0, 0.38);
+	}
+
+	.portfolio {
+		position: relative;
+		min-height: 100vh;
+		overflow: clip;
+		font-family: 'Space Grotesk', sans-serif;
+		color: var(--text);
+		background:
+			radial-gradient(circle at top left, rgba(103, 232, 249, 0.12), transparent 30%),
+			radial-gradient(circle at top right, rgba(120, 166, 255, 0.1), transparent 28%),
+			radial-gradient(circle at bottom left, rgba(122, 240, 179, 0.08), transparent 22%),
+			linear-gradient(180deg, var(--page) 0%, var(--page-deep) 100%);
+	}
+
+	.portfolio::before,
+	.portfolio::after {
+		content: '';
+		position: fixed;
+		inset: 0;
+		pointer-events: none;
+	}
+
+	.portfolio::before {
+		background-image:
+			linear-gradient(rgba(120, 166, 255, 0.08) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(120, 166, 255, 0.08) 1px, transparent 1px);
+		background-size: 72px 72px;
+		mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent 90%);
+	}
+
+	.portfolio::after {
+		background: linear-gradient(
+			180deg,
+			rgba(255, 255, 255, 0.03) 0,
+			rgba(255, 255, 255, 0.03) 1px,
+			transparent 1px,
+			transparent 4px
+		);
+		background-size: 100% 4px;
+		opacity: 0.14;
+	}
+
+	.topbar {
+		position: sticky;
+		top: 0;
+		z-index: 10;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: min(1120px, calc(100% - 2rem));
+		margin: 0 auto;
+		padding-top: 1rem;
+	}
+
+	.brand,
+	.site-nav {
+		border: 1px solid var(--line);
+		background: rgba(7, 14, 24, 0.74);
+		backdrop-filter: blur(16px);
+		box-shadow: 0 18px 44px rgba(0, 0, 0, 0.24);
+	}
+
+	.brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.9rem;
+		padding: 0.8rem 1rem;
+		border-radius: 1rem;
+		text-decoration: none;
+	}
+
+	.brand-glyph {
+		display: inline-grid;
+		place-items: center;
+		width: 2.6rem;
+		height: 2.6rem;
+		border-radius: 0.85rem;
+		background: linear-gradient(135deg, rgba(103, 232, 249, 0.22), rgba(120, 166, 255, 0.16));
+		color: var(--cyan);
+		font-family: 'IBM Plex Mono', monospace;
+		font-size: 0.95rem;
+		font-weight: 600;
+	}
+
+	.brand-copy {
+		display: grid;
+	}
+
+	.prompt-line,
+	.section-kicker,
+	.file-name,
+	.project-label,
+	.terminal-command,
+	.group-label,
+	.project-index,
+	.prompt,
+	.status-pill,
+	.window-footer {
+		font-family: 'IBM Plex Mono', monospace;
+	}
+
+	.prompt-line {
+		font-size: 0.74rem;
+		color: var(--cyan);
+		letter-spacing: 0.04em;
+	}
+
+	.site-nav {
+		display: inline-flex;
+		gap: 0.5rem;
+		padding: 0.55rem;
+		border-radius: 1rem;
+	}
+
+	.site-nav a {
+		padding: 0.7rem 0.95rem;
+		border-radius: 0.7rem;
+		text-decoration: none;
+		font-family: 'IBM Plex Mono', monospace;
+		font-size: 0.83rem;
+		color: var(--muted);
+		text-transform: lowercase;
+	}
+
+	.site-nav a:hover,
+	.site-nav a:focus-visible {
+		background: rgba(120, 166, 255, 0.12);
+		color: var(--text);
+	}
+
+	.page-shell {
+		position: relative;
+		z-index: 1;
+		width: min(1120px, calc(100% - 2rem));
+		margin: 0 auto;
+		padding: 3.8rem 0 3rem;
+	}
+
+	.shell-card {
+		border: 1px solid var(--line);
+		border-radius: 1.6rem;
+		background: linear-gradient(180deg, rgba(9, 18, 29, 0.98), rgba(5, 12, 21, 0.96));
+		box-shadow: var(--shadow);
+		overflow: hidden;
+	}
+
+	.shell-head {
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
+		padding: 0.95rem 1.2rem;
+		border-bottom: 1px solid var(--line);
+		background: rgba(255, 255, 255, 0.02);
+		color: var(--muted);
+		font-family: 'IBM Plex Mono', monospace;
+		font-size: 0.84rem;
+	}
+
+	.shell-dots {
+		display: inline-flex;
+		gap: 0.35rem;
+	}
+
+	.shell-dots span {
+		width: 0.7rem;
+		height: 0.7rem;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.22);
+	}
+
+	.shell-dots span:first-child {
+		background: #ff6b7f;
+	}
+
+	.shell-dots span:nth-child(2) {
+		background: #ffd166;
+	}
+
+	.shell-dots span:last-child {
+		background: #7af0b3;
+	}
+
+	.hero-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+		gap: 1.5rem;
+		padding: 1.5rem;
+	}
+
+	.hero-copy h1,
+	.section-heading h2,
+	.contact-copy h2,
+	.project-card h3,
+	.principle-card h3,
+	.runtime-card h2 {
+		margin: 0;
+		font-weight: 700;
+		letter-spacing: -0.05em;
+	}
+
+	.section-kicker {
+		margin: 0 0 0.8rem;
+		font-size: 0.78rem;
+		color: var(--cyan);
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+	}
+
+	.hero-copy h1 {
+		max-width: 10ch;
+		font-size: clamp(3.2rem, 8vw, 6.5rem);
+		line-height: 0.94;
+	}
+
+	.lede,
+	.project-summary,
+	.project-log,
+	.principle-card p,
+	.contact-copy p {
+		line-height: 1.75;
+		color: var(--muted);
+	}
+
+	.lede {
+		max-width: 39rem;
+		margin: 1.3rem 0 0;
+		font-size: 1.06rem;
+	}
+
+	.hero-actions,
+	.contact-console {
+		margin-top: 1.8rem;
+	}
+
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.9rem;
+	}
+
+	.button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.95rem 1.25rem;
+		border-radius: 0.9rem;
+		text-decoration: none;
+		font-family: 'IBM Plex Mono', monospace;
+		font-size: 0.85rem;
+		transition:
+			transform 180ms ease,
+			box-shadow 180ms ease,
+			background-color 180ms ease;
+	}
+
+	.button:hover,
+	.button:focus-visible {
+		transform: translateY(-2px);
+	}
+
+	.button-primary {
+		background: linear-gradient(135deg, rgba(103, 232, 249, 0.18), rgba(120, 166, 255, 0.3));
+		border: 1px solid rgba(103, 232, 249, 0.3);
+		color: var(--text);
+		box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
+	}
+
+	.button-secondary {
+		border: 1px solid var(--line);
+		background: rgba(255, 255, 255, 0.03);
+		color: var(--text);
+	}
+
+	.command-strip {
+		display: grid;
+		gap: 0.7rem;
+		margin: 1.8rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.command-strip li {
+		display: flex;
+		gap: 0.75rem;
+		align-items: center;
+		padding: 0.9rem 1rem;
+		border: 1px solid rgba(122, 240, 179, 0.14);
+		border-radius: 0.95rem;
+		background: rgba(122, 240, 179, 0.06);
+		font-family: 'IBM Plex Mono', monospace;
+		font-size: 0.84rem;
+	}
+
+	.prompt {
+		color: var(--green);
+	}
+
+	.editor-window {
+		border: 1px solid rgba(120, 166, 255, 0.16);
+		border-radius: 1.2rem;
+		background: linear-gradient(180deg, rgba(12, 24, 39, 0.96), rgba(8, 16, 27, 0.94));
+		overflow: hidden;
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+	}
+
+	.editor-tabs {
+		display: flex;
+		gap: 0.45rem;
+		padding: 0.8rem 0.8rem 0;
+		background: rgba(0, 0, 0, 0.18);
+	}
+
+	.tab {
+		padding: 0.7rem 0.9rem;
+		border: 1px solid transparent;
+		border-radius: 0.8rem 0.8rem 0 0;
+		background: rgba(255, 255, 255, 0.03);
+		color: var(--muted);
+		font-family: 'IBM Plex Mono', monospace;
+		font-size: 0.76rem;
+	}
+
+	.tab.active {
+		border-color: rgba(120, 166, 255, 0.16);
+		border-bottom-color: transparent;
+		background: rgba(255, 255, 255, 0.04);
+		color: var(--text);
+	}
+
+	.code-block {
+		margin: 0;
+		padding: 1.2rem 1.2rem 1rem;
+		font-family: 'IBM Plex Mono', monospace;
+		font-size: 0.86rem;
+		line-height: 1.8;
+		overflow-x: auto;
+	}
+
+	.code-block code {
+		counter-reset: line;
+	}
+
+	.code-block span {
+		display: block;
+		position: relative;
+		padding-left: 3rem;
+	}
+
+	.code-block span::before {
+		counter-increment: line;
+		content: counter(line, decimal-leading-zero);
+		position: absolute;
+		left: 0;
+		color: rgba(140, 161, 189, 0.45);
+	}
+
+	.token-comment {
+		color: #5f738f;
+	}
+
+	.token-keyword {
+		color: var(--cyan);
+	}
+
+	.token-variable {
+		color: #bfd1ff;
+	}
+
+	.token-string {
+		color: var(--amber);
+	}
+
+	.token-boolean {
+		color: var(--green);
+	}
+
+	.window-footer {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.8rem 1.2rem;
+		padding: 1rem 1.2rem 1.2rem;
+		border-top: 1px solid rgba(120, 166, 255, 0.12);
+		color: var(--muted);
+		font-size: 0.75rem;
+		text-transform: lowercase;
+	}
+
+	.runtime-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1rem;
+		padding: 0 1.5rem 1.5rem;
+	}
+
+	.runtime-card {
+		padding: 1rem 1.05rem;
+		border: 1px solid var(--line);
+		border-radius: 1rem;
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+	}
+
+	.runtime-card p {
+		margin: 0;
+		font-family: 'IBM Plex Mono', monospace;
+		font-size: 0.74rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--cyan);
+	}
+
+	.runtime-card h2 {
+		margin-top: 0.7rem;
+		font-size: clamp(1rem, 2vw, 1.15rem);
+		line-height: 1.5;
+	}
+
+	.section-shell {
+		margin-top: 1.5rem;
+	}
+
+	.section-body {
+		padding: 1.5rem;
+	}
+
+	.section-heading {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.section-heading.compact {
+		display: block;
+	}
+
+	.section-heading h2,
+	.contact-copy h2 {
+		max-width: 14ch;
+		font-size: clamp(2rem, 5vw, 3.35rem);
+		line-height: 0.98;
+	}
+
+	.project-grid {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.project-card {
+		position: relative;
+		border: 1px solid var(--line);
+		border-radius: 1.3rem;
+		overflow: hidden;
+		background: linear-gradient(180deg, rgba(7, 14, 24, 0.7), rgba(3, 8, 15, 0.94));
+	}
+
+	.project-card.wide {
+		grid-column: span 7;
+	}
+
+	.project-card.tall {
+		grid-column: span 5;
+	}
+
+	.project-card.standard {
+		grid-column: span 12;
+	}
+
+	.project-card.cyan {
+		box-shadow: inset 0 3px 0 rgba(103, 232, 249, 0.45);
+	}
+
+	.project-card.green {
+		box-shadow: inset 0 3px 0 rgba(122, 240, 179, 0.45);
+	}
+
+	.project-card.amber {
+		box-shadow: inset 0 3px 0 rgba(255, 184, 106, 0.45);
+	}
+
+	.project-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 1rem 1.2rem;
+		border-bottom: 1px solid rgba(120, 166, 255, 0.12);
+		background: rgba(255, 255, 255, 0.02);
+	}
+
+	.file-name,
+	.status-pill {
+		font-size: 0.76rem;
+		text-transform: lowercase;
+	}
+
+	.file-name {
+		color: var(--cyan);
+	}
+
+	.status-pill {
+		padding: 0.35rem 0.6rem;
+		border-radius: 999px;
+		border: 1px solid rgba(122, 240, 179, 0.18);
+		background: rgba(122, 240, 179, 0.08);
+		color: var(--green);
+	}
+
+	.project-body {
+		display: flex;
+		flex-direction: column;
+		min-height: 18rem;
+		padding: 1.2rem;
+	}
+
+	.project-index {
+		margin: 0;
+		font-size: 0.8rem;
+		color: rgba(140, 161, 189, 0.5);
+		letter-spacing: 0.06em;
+	}
+
+	.project-label {
+		margin: 0.7rem 0 0;
+		font-size: 0.74rem;
+		color: var(--muted);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.project-card h3 {
+		margin-top: 0.45rem;
+		max-width: 11ch;
+		font-size: clamp(1.85rem, 4vw, 2.8rem);
+		line-height: 0.98;
+	}
+
+	.project-summary {
+		margin: 1rem 0 0;
+		max-width: 34rem;
+	}
+
+	.project-log {
+		display: grid;
+		gap: 0.3rem;
+		margin-top: auto;
+		padding-top: 1.1rem;
+	}
+
+	.log-key {
+		font-family: 'IBM Plex Mono', monospace;
+		font-size: 0.78rem;
+		color: var(--cyan);
+	}
+
+	.tag-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+		margin: 1rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.tag-list li {
+		padding: 0.55rem 0.75rem;
+		border: 1px solid rgba(120, 166, 255, 0.14);
+		border-radius: 0.8rem;
+		background: rgba(120, 166, 255, 0.05);
+		font-family: 'IBM Plex Mono', monospace;
+		font-size: 0.76rem;
+		color: #dce7ff;
+	}
+
+	.about-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+		gap: 1.5rem;
+	}
+
+	.principle-list {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.principle-card {
+		padding: 1.05rem 1.1rem;
+		border: 1px solid rgba(120, 166, 255, 0.12);
+		border-radius: 1rem;
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent);
+	}
+
+	.terminal-command {
+		display: flex;
+		gap: 0.6rem;
+		margin: 0 0 0.9rem;
+		font-size: 0.78rem;
+		color: var(--green);
+	}
+
+	.principle-card h3 {
+		font-size: 1.25rem;
+		line-height: 1.12;
+	}
+
+	.principle-card p:last-child {
+		margin: 0.75rem 0 0;
+	}
+
+	.side-panel {
+		background:
+			radial-gradient(circle at top right, rgba(103, 232, 249, 0.08), transparent 28%),
+			linear-gradient(180deg, rgba(9, 18, 29, 0.98), rgba(5, 12, 21, 0.96));
+	}
+
+	.tool-groups {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.tool-group {
+		padding: 1rem;
+		border: 1px solid rgba(120, 166, 255, 0.12);
+		border-radius: 1rem;
+		background: rgba(255, 255, 255, 0.02);
+	}
+
+	.group-label {
+		font-size: 0.78rem;
+		color: var(--cyan);
+	}
+
+	.group-label.closing {
+		margin-top: 0.7rem;
+		color: var(--muted);
+	}
+
+	.tool-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+		margin: 0.85rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.tool-list li {
+		padding: 0.45rem 0.65rem;
+		border-radius: 0.7rem;
+		background: rgba(122, 240, 179, 0.08);
+		border: 1px solid rgba(122, 240, 179, 0.14);
+		font-family: 'IBM Plex Mono', monospace;
+		font-size: 0.76rem;
+	}
+
+	.contact-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+		gap: 1.5rem;
+	}
+
+	.contact-copy p:last-child {
+		max-width: 34rem;
+		margin-top: 1rem;
+	}
+
+	.contact-console {
+		padding: 1rem;
+		border: 1px solid rgba(120, 166, 255, 0.12);
+		border-radius: 1rem;
+		background: rgba(0, 0, 0, 0.2);
+	}
+
+	.contact-console p {
+		display: flex;
+		gap: 0.65rem;
+		margin: 0 0 0.75rem;
+		font-family: 'IBM Plex Mono', monospace;
+		font-size: 0.8rem;
+		color: var(--muted);
+	}
+
+	.contact-link {
+		display: inline-flex;
+		margin-bottom: 1rem;
+		color: var(--text);
+		text-decoration: none;
+		font-family: 'IBM Plex Mono', monospace;
+		font-size: 0.82rem;
+	}
+
+	.contact-link:hover,
+	.contact-link:focus-visible {
+		color: var(--cyan);
+	}
+
+	.reveal {
+		animation: reveal-up 700ms ease both;
+	}
+
+	.delay-1 {
+		animation-delay: 120ms;
+	}
+
+	.delay-2 {
+		animation-delay: 240ms;
+	}
+
+	@keyframes reveal-up {
+		from {
+			opacity: 0;
+			transform: translateY(18px);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (max-width: 920px) {
+		.topbar {
+			position: static;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.75rem;
+		}
+
+		.hero-grid,
+		.about-grid,
+		.contact-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.runtime-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.project-card.wide,
+		.project-card.tall,
+		.project-card.standard {
+			grid-column: span 12;
+		}
+
+		.section-heading h2,
+		.contact-copy h2 {
+			max-width: 100%;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.page-shell {
+			padding-top: 2.5rem;
+		}
+
+		.hero-grid,
+		.section-body {
+			padding: 1.1rem;
+		}
+
+		.hero-copy h1 {
+			font-size: clamp(3rem, 18vw, 4.6rem);
+		}
+
+		.hero-actions {
+			flex-direction: column;
+		}
+
+		.button,
+		.contact-link {
+			width: 100%;
+		}
+
+		.site-nav {
+			justify-content: space-between;
+		}
+
+		.project-body {
+			min-height: auto;
+		}
+
+		.window-footer {
+			flex-direction: column;
+			gap: 0.4rem;
+		}
+	}
+</style>
